@@ -1,7 +1,11 @@
+import 'package:prasarana_rapid/src/util/cari_param_null.dart';
+
+import '../constant/endpoint_list.dart';
+
 /// diambil daripada calendar.txt
 class Kalendar {
   String id;
-  int isnin;
+  int isnin; // todo: tukar jadi enum Ketersediaan
   int selasa;
   int rabu;
   int khamis;
@@ -24,10 +28,8 @@ class Kalendar {
     this.tarikhAkhir,
   );
 
-  factory Kalendar.dariCsv(List<dynamic> data) {
-    for (final lala in data) {
-      if (lala == '') print('objek null: $data');
-    }
+  factory Kalendar.dariCsv(List<dynamic> data, Kategori kategori) {
+    cariParamNull(data);
 
     return Kalendar(
       data[0].toString(),
@@ -42,4 +44,8 @@ class Kalendar {
       DateTime.parse(data[9].toString()),
     );
   }
+
+  @override
+  String toString() =>
+      'Kalendar{id: $id, isnin: $isnin, selasa: $selasa, rabu: $rabu, khamis: $khamis, jumaat: $jumaat, sabtu: $sabtu, ahad: $ahad, tarikhMula: $tarikhMula, tarikhAkhir: $tarikhAkhir}';
 }

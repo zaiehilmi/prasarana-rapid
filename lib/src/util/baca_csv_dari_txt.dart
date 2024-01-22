@@ -26,14 +26,14 @@ List<T> bacaCsv<T>({required FailTxt dariTxt, required Kategori endpoint}) {
 
   for (final b in baris) {
     final objek = switch (dariTxt) {
-      FailTxt.agensi => Agensi.dariCsv(b),
-      FailTxt.kalendar => Kalendar.dariCsv(b),
-      FailTxt.frekuensi => Frekuensi.dariCsv(b),
-      FailTxt.laluan => Laluan.dariCsv(b),
-      FailTxt.bentuk => Bentuk.dariCsv(b),
-      FailTxt.waktuBerhenti => WaktuBerhenti.dariCsv(b),
-      FailTxt.hentian => Hentian.dariCsv(b),
-      FailTxt.perjalanan => Perjalanan.dariCsv(b),
+      FailTxt.agensi => Agensi.dariCsv(b, endpoint),
+      FailTxt.kalendar => Kalendar.dariCsv(b, endpoint),
+      FailTxt.frekuensi => Frekuensi.dariCsv(b, endpoint),
+      FailTxt.laluan => Laluan.dariCsv(b, endpoint),
+      FailTxt.bentuk => Bentuk.dariCsv(b, endpoint),
+      FailTxt.waktuBerhenti => WaktuBerhenti.dariCsv(b, endpoint),
+      FailTxt.hentian => Hentian.dariCsv(b, endpoint),
+      FailTxt.perjalanan => Perjalanan.dariCsv(b, endpoint),
     };
     senaraiObjek.add(objek as T);
   }

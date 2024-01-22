@@ -22,7 +22,7 @@ void main() {
       final arkib = bukaFailZip(Kategori.basKL);
 
       final input = arkib
-          .firstWhere((file) => file.name.endsWith(FailTxt.kalendar.nama.txt));
+          .firstWhere((file) => file.name.endsWith(FailTxt.agensi.nama.txt));
       final kandungan = String.fromCharCodes(input.content);
 
       final rowsAsListOfValues =
@@ -42,3 +42,5 @@ void main() {
     });
   });
 }
+// [agency_id, agency_name, agency_url, agency_timezone, agency_phone, agency_lang]
+// [rapidkl, Rapid KL, http://www.myrapid.com.my, Asia/Kuala_Lumpur, 60378852585, en]

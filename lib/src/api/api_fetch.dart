@@ -13,11 +13,18 @@ final _options = BaseOptions(
 final dio = Dio(_options);
 
 Future<void> fetchPrasaranaApi(Kategori kategori) async {
-  if (Tetapan.token != null) {
-    _options.headers = {'Authorization': 'Bearer ${Tetapan.token}'};
+  try {
+    if (Tetapan.token != null) {
+      _options.headers = {'Authorization': 'Bearer ${Tetapan.token}'};
+    }
+
+    await dio.download(
+        '?category=${kategori.nama}', 'out/${kategori.nama}.zip');
+  } on DioException {
+    print('Masalah di Dio');
+  } catch (e) {
+    print(e);
+  } finally {
+    dio.close();
   }
-
-  await dio.download('?category=${kategori.nama}', 'out/${kategori.nama}.zip');
-
-  dio.close();
 }

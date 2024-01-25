@@ -12,7 +12,7 @@ import 'package:prasarana_rapid/src/model/perjalanan.dart';
 import 'package:prasarana_rapid/src/model/waktu_berhenti.dart';
 import 'package:prasarana_rapid/src/util/baca_csv_dari_txt.dart';
 import 'package:prasarana_rapid/src/util/buka_fail_zip.dart';
-import 'package:prasarana_rapid/src/util/string_util.dart';
+import 'package:prasarana_rapid/src/util/util_string.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 

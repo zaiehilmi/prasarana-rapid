@@ -10,4 +10,6 @@ extension StringUtil on String {
   }
 
   String? get jadiNullJikaTiadaData => this != '' ? this : null;
+
+  String get hurufPertamaBesar => this[0].toUpperCase() + substring(1);
 }

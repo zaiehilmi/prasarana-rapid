@@ -5,7 +5,7 @@ import 'package:prasarana_rapid/src/constant/txt_list.dart';
 import 'package:prasarana_rapid/src/model/kalendar.dart';
 import 'package:prasarana_rapid/src/util/baca_csv_dari_txt.dart';
 import 'package:prasarana_rapid/src/util/buka_fail_zip.dart';
-import 'package:prasarana_rapid/src/util/string_util.dart';
+import 'package:prasarana_rapid/src/util/util_string.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -14,8 +14,13 @@ void main() {
       // Additional setup goes here.
     });
 
-    test('First Test', () async {
-      await fetchPrasaranaApi(Kategori.relKL);
+    group('test api', () {
+      test('pastikan api boleh dijalankan',
+          () async => await fetchPrasaranaApi(Kategori.relKL));
+
+      test('muat turun jika fail zip tiada di lokasi setempat', () async {});
+
+      test('muat turun jika terdapat perubahan di pelayan', () => null);
     });
 
     test('buka fail zip dan baca baris pertama', () {
@@ -30,14 +35,14 @@ void main() {
       print(rowsAsListOfValues.length);
       print(rowsAsListOfValues[0]);
       print(rowsAsListOfValues[1]);
-      print(rowsAsListOfValues[2]);
+      // print(rowsAsListOfValues[2]);
       // print(rowsAsListOfValues[3]);
     });
 
     test('baca fail txt', () {
       final agensi = bacaCsv<Kalendar>(
           dariTxt: FailTxt.kalendar, endpoint: Kategori.basKL);
-      print(agensi.length);
+      // print(agensi.length);
       print('==${agensi[1].id}==');
     });
   });

@@ -1,4 +1,4 @@
-import 'package:prasarana_rapid/src/util/string_util.dart';
+import 'package:prasarana_rapid/src/util/util_string.dart';
 
 import '../constant/endpoint_list.dart';
 

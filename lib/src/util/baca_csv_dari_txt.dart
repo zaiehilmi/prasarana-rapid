@@ -7,7 +7,7 @@ import 'package:prasarana_rapid/src/model/kalendar.dart';
 import 'package:prasarana_rapid/src/model/laluan.dart';
 import 'package:prasarana_rapid/src/model/perjalanan.dart';
 import 'package:prasarana_rapid/src/model/waktu_berhenti.dart';
-import 'package:prasarana_rapid/src/util/string_util.dart';
+import 'package:prasarana_rapid/src/util/util_string.dart';
 
 import '../model/agensi.dart';
 import '../model/bentuk.dart';
@@ -38,5 +38,7 @@ List<T> bacaCsv<T>({required FailTxt dariTxt, required Kategori endpoint}) {
     senaraiObjek.add(objek as T);
   }
 
+  print(
+      'Terdapat ${senaraiObjek.length} data ${dariTxt.name.hurufPertamaBesar}');
   return senaraiObjek;
 }

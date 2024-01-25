@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:prasarana_rapid/src/service/tetapan.dart';
+import 'package:prasarana_rapid/src/util/kira_hash.dart';
 
 import '../constant/endpoint_list.dart';
 
@@ -12,14 +15,32 @@ final _options = BaseOptions(
 
 final dio = Dio(_options);
 
-Future<void> fetchPrasaranaApi(Kategori kategori) async {
+Future<void> fetchPrasaranaApi(
+  Kategori kategori, {
+  bool semakPerubahan = true,
+}) async {
+  final kedudukanFail = 'out/${kategori.nama}.zip';
+  final laluanApi = '?category=${kategori.nama}';
+
   try {
     if (Tetapan.token != null) {
       _options.headers = {'Authorization': 'Bearer ${Tetapan.token}'};
     }
 
-    await dio.download(
-        '?category=${kategori.nama}', 'out/${kategori.nama}.zip');
+    final response = await dio.get(laluanApi);
+    final etag = response.headers.value('etag').toString();
+
+    final failBelumWujud = !File(kedudukanFail).existsSync();
+
+    if (failBelumWujud) {
+      print('Memuat turun data...');
+      await dio.download(laluanApi, kedudukanFail);
+    } else {
+      if (semakPerubahan && bandingHash(kedudukanFail, etag)) {
+        print('Terdapat perubahan pada pelayan. Memuat turun data baru...');
+        await dio.download(laluanApi, kedudukanFail);
+      }
+    }
   } on DioException {
     print('Masalah di Dio');
   } catch (e) {

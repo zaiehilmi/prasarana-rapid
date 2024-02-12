@@ -4,14 +4,19 @@ import '../constant/endpoint_list.dart';
 
 /// diambil daripada frequencies.txt
 class Frekuensi {
-  String? id;
+  /// ID Asing yang diambil dari Perjalanan.idPerjalanan
+  String idPerjalanan;
   DateTime masaMula;
   DateTime masaTamat;
-  int? headwaySecs;
+  int headwaySecs;
+
+  // todo: buat enum
+  /// 0 atau null - frequency based trips
+  /// 1 - schedule based trips
   int? exactTimes;
 
   Frekuensi(
-    this.id,
+    this.idPerjalanan,
     this.masaMula,
     this.masaTamat,
     this.headwaySecs,

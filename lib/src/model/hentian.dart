@@ -4,8 +4,8 @@ class Hentian {
   String id;
   String? namaHentian;
   String? huraianHentian;
-  double lat;
-  double lon;
+  double? lat;
+  double? lon;
 
   Hentian(this.id, this.namaHentian, this.huraianHentian, this.lat, this.lon);
 

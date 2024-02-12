@@ -1,5 +1,3 @@
-import 'package:prasarana_rapid/src/util/cari_param_null.dart';
-
 import '../constant/endpoint_list.dart';
 
 /// diambil daripada calendar.txt
@@ -29,7 +27,7 @@ class Kalendar {
   );
 
   factory Kalendar.dariCsv(List<dynamic> data, Kategori kategori) {
-    cariParamNull(data);
+    // cariParamNull(data);
 
     return Kalendar(
       data[0].toString(),

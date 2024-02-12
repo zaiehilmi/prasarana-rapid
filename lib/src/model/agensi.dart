@@ -1,5 +1,6 @@
 import 'package:prasarana_rapid/src/constant/endpoint_list.dart';
 
+// telah disemak
 /// diambil dari agency.dart
 class Agensi {
   String? id;

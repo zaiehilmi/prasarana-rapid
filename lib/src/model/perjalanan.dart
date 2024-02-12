@@ -6,7 +6,11 @@ class Perjalanan {
   String idPerjalanan;
   String? idBentuk;
   String? petunjukPerjalanan;
-  int? idArah; // todo: enum Arah (berbalik atau satu arah)
+
+  // todo: enum Arah (berbalik atau satu arah)
+  /// 0 - 1 arah (keluar/outbound)
+  /// 1 - berbalik (kembali/inbound)
+  int? idArah;
 
   Perjalanan(
     this.idLaluan,

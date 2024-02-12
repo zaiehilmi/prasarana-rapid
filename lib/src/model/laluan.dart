@@ -1,5 +1,4 @@
 import '../constant/endpoint_list.dart';
-import '../util/cari_param_null.dart';
 
 /// diambil daripada routes.txt
 class Laluan {
@@ -7,7 +6,10 @@ class Laluan {
   String? idAgensi;
   String? namaPendek;
   String namaPenuh;
-  int? jenisLaluan;
+
+  // todo: tukar jadi enum
+  /// ada value 0-12
+  int jenisLaluan;
   String? warnaLaluan;
   String? warnaTeksLaluan;
 
@@ -22,7 +24,7 @@ class Laluan {
   );
 
   factory Laluan.dariCsv(List<dynamic> data, Kategori kategori) {
-    cariParamNull(data);
+    // cariParamNull(data);
 
     return switch (kategori) {
       Kategori.basPerantaraMrt => Laluan(

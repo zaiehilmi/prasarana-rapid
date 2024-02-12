@@ -2,6 +2,8 @@ import 'package:prasarana_rapid/src/util/util_string.dart';
 
 import '../constant/endpoint_list.dart';
 
+enum TepatMasa { berasaskanFrekuensi, berasaskanJadual }
+
 /// diambil daripada frequencies.txt
 class Frekuensi {
   /// ID Asing yang diambil dari Perjalanan.idPerjalanan
@@ -9,11 +11,7 @@ class Frekuensi {
   DateTime masaMula;
   DateTime masaTamat;
   int headwaySecs;
-
-  // todo: buat enum
-  /// 0 atau null - frequency based trips
-  /// 1 - schedule based trips
-  int? exactTimes;
+  TepatMasa? exactTimes;
 
   Frekuensi(
     this.idPerjalanan,
@@ -28,6 +26,16 @@ class Frekuensi {
         data[1].toString().keDateTime,
         data[2].toString().keDateTime,
         data[3],
-        data[4],
+        tukar(data[4]),
       );
+
+  @override
+  String toString() {
+    return 'Frekuensi{idPerjalanan: $idPerjalanan, masaMula: $masaMula, masaTamat: $masaTamat, headwaySecs: $headwaySecs, exactTimes: $exactTimes}';
+  }
 }
+
+TepatMasa? tukar(int? nilai) => switch (nilai) {
+      0 || null => TepatMasa.berasaskanFrekuensi,
+      int() => TepatMasa.berasaskanJadual,
+    };

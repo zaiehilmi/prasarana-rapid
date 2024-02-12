@@ -1,15 +1,17 @@
 import '../constant/endpoint_list.dart';
 
+enum Ketersediaan { ya, tidak }
+
 /// diambil daripada calendar.txt
 class Kalendar {
   String id;
-  int isnin; // todo: tukar jadi enum Ketersediaan
-  int selasa;
-  int rabu;
-  int khamis;
-  int jumaat;
-  int sabtu;
-  int ahad;
+  Ketersediaan isnin;
+  Ketersediaan selasa;
+  Ketersediaan rabu;
+  Ketersediaan khamis;
+  Ketersediaan jumaat;
+  Ketersediaan sabtu;
+  Ketersediaan ahad;
   DateTime tarikhMula;
   DateTime tarikhAkhir;
 
@@ -27,17 +29,15 @@ class Kalendar {
   );
 
   factory Kalendar.dariCsv(List<dynamic> data, Kategori kategori) {
-    // cariParamNull(data);
-
     return Kalendar(
       data[0].toString(),
-      data[1],
-      data[2],
-      data[3],
-      data[4],
-      data[5],
-      data[6],
-      data[7],
+      tukar(data[1]),
+      tukar(data[2]),
+      tukar(data[3]),
+      tukar(data[4]),
+      tukar(data[5]),
+      tukar(data[6]),
+      tukar(data[7]),
       DateTime.parse(data[8].toString()),
       DateTime.parse(data[9].toString()),
     );
@@ -47,3 +47,8 @@ class Kalendar {
   String toString() =>
       'Kalendar{id: $id, isnin: $isnin, selasa: $selasa, rabu: $rabu, khamis: $khamis, jumaat: $jumaat, sabtu: $sabtu, ahad: $ahad, tarikhMula: $tarikhMula, tarikhAkhir: $tarikhAkhir}';
 }
+
+Ketersediaan tukar(int nilai) => switch (nilai) {
+      0 => Ketersediaan.ya,
+      int() => Ketersediaan.tidak,
+    };

@@ -1,4 +1,0 @@
-enum Ketersediaan {
-  tidakTersedia,
-  tersedia;
-}

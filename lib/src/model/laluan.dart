@@ -1,15 +1,25 @@
 import '../constant/endpoint_list.dart';
 
+enum JenisKenderaan {
+  tram,
+  relBawahTanah,
+  rel,
+  bas,
+  feri,
+  tramBerkabel,
+  lifUdara,
+  keretaApiBukit,
+  basElektrik,
+  monorel
+}
+
 /// diambil daripada routes.txt
 class Laluan {
   String id;
   String? idAgensi;
   String? namaPendek;
   String namaPenuh;
-
-  // todo: tukar jadi enum
-  /// ada value 0-12
-  int jenisLaluan;
+  JenisKenderaan jenisLaluan;
   String? warnaLaluan;
   String? warnaTeksLaluan;
 
@@ -32,7 +42,7 @@ class Laluan {
           data[1] == '' ? null : data[1],
           data[2] == '' ? null : data[2],
           data[3],
-          data[4],
+          tukar(data[4]),
           null,
           null,
         ),
@@ -54,5 +64,11 @@ class Laluan {
   }
 }
 
-// [H4100, rapidkl, MS01, MRT Putrajaya Sentral ~ Dataran Putrajaya, 3, 21618C, FFFFFF]
-// [S4000, rapidkl, SA01, Stesen KTM Seksyen 19 ~ Seksyen 7, 3, 8716, FFFFFF]
+JenisKenderaan tukar(int nilai) => switch (nilai) {
+      0 => JenisKenderaan.tram,
+      1 => JenisKenderaan.relBawahTanah,
+      2 => JenisKenderaan.rel,
+      3 => JenisKenderaan.bas,
+      12 => JenisKenderaan.monorel,
+      int() => JenisKenderaan.feri
+    };

@@ -1,16 +1,14 @@
 import '../constant/endpoint_list.dart';
 
+enum ArahPerjalanan { satuArah, berbalik }
+
 class Perjalanan {
   String idLaluan;
   String idPerkhidmatan;
   String idPerjalanan;
   String? idBentuk;
   String? petunjukPerjalanan;
-
-  // todo: enum Arah (berbalik atau satu arah)
-  /// 0 - 1 arah (keluar/outbound)
-  /// 1 - berbalik (kembali/inbound)
-  int? idArah;
+  ArahPerjalanan? idArah;
 
   Perjalanan(
     this.idLaluan,
@@ -28,7 +26,7 @@ class Perjalanan {
         data[2] as String,
         data[3] != '' ? data[3].toString() : null,
         data[4] != '' ? data[4].toString() : null,
-        data[5] as int,
+        tukar(data[5] as int),
       );
 
   @override
@@ -36,4 +34,8 @@ class Perjalanan {
       'Perjalanan{idLaluan: $idLaluan, idPerkhidmatan: $idPerkhidmatan, idPerjalanan: $idPerjalanan, idBentuk: $idBentuk, petunjukPerjalanan: $petunjukPerjalanan, idArah: $idArah}';
 }
 
-// [H4100, weekday, weekday_H4100_H410002_0, H410002, , 0]
+ArahPerjalanan? tukar(int? nilai) => switch (nilai) {
+      0 => ArahPerjalanan.satuArah,
+      1 => ArahPerjalanan.berbalik,
+      int() || null => null,
+    };

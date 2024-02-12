@@ -5,6 +5,7 @@ import 'package:prasarana_rapid/src/constant/endpoint_list.dart';
 import 'package:prasarana_rapid/src/constant/txt_list.dart';
 import 'package:prasarana_rapid/src/model/agensi.dart';
 import 'package:prasarana_rapid/src/model/bentuk.dart';
+import 'package:prasarana_rapid/src/model/frekuensi.dart';
 import 'package:prasarana_rapid/src/model/hentian.dart';
 import 'package:prasarana_rapid/src/model/kalendar.dart';
 import 'package:prasarana_rapid/src/model/laluan.dart';
@@ -72,6 +73,20 @@ void main() {
         final kalendar =
             bacaCsv<Kalendar>(dariTxt: FailTxt.kalendar, endpoint: kategori);
         print(kalendar[0].toString());
+      });
+    });
+
+    group('FREKUENSI', () {
+      test('buka fail zip dan baca kandungan', () {
+        final arkib = bukaFailZip(kategori);
+
+        dapatkanKandungan(arkib, FailTxt.frekuensi);
+      });
+
+      test('baca frequencies.txt', () {
+        final temp =
+            bacaCsv<Frekuensi>(dariTxt: FailTxt.frekuensi, endpoint: kategori);
+        print(temp[0].toString());
       });
     });
 

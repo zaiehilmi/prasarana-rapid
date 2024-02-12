@@ -1,6 +1,5 @@
 import '../constant/endpoint_list.dart';
 
-//telah disemak
 class Bentuk {
   String id;
   double lat;

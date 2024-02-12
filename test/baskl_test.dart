@@ -17,8 +17,8 @@ import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
 void main() {
-  group('objek dalam bas perantara mrt', () {
-    final kategori = Kategori.basPerantaraMrt;
+  group('objek dalam bas rapidKL', () {
+    final kategori = Kategori.basKL;
 
     test('dapatkan data dari Api',
         () async => await fetchPrasaranaApi(kategori));
@@ -28,26 +28,23 @@ void main() {
       final kandunganZipSepatutnya = [
         FailTxt.agensi.nama.txt,
         FailTxt.kalendar.nama.txt,
-        // FailTxt.tarikhKalendar.nama.txt,
+        FailTxt.frekuensi.nama.txt,
         FailTxt.laluan.nama.txt,
         FailTxt.bentuk.nama.txt,
-        FailTxt.hentian.nama.txt,
         FailTxt.waktuBerhenti.nama.txt,
+        FailTxt.hentian.nama.txt,
         FailTxt.perjalanan.nama.txt,
       ];
 
       int i = 0;
       for (final f in arkib) {
         if (f.isFile) {
-          if (f.name != 'calendar_dates.txt') {
-            expect(f.name, kandunganZipSepatutnya[i++]);
-          } else {
-            continue;
-          }
-          print('ada fail ${f.name}\t\t${f.size} $i');
+          expect(f.name, kandunganZipSepatutnya[i++]);
+
+          print('$i ada fail ${f.name}\t\t${f.size}');
         }
       }
-      expect(arkib.length, 8);
+      expect(arkib.length, 9);
     });
 
     group('AGENSI', () {
@@ -78,8 +75,6 @@ void main() {
       });
     });
 
-// SKIP calendar_dates.txt
-
     group('LALUAN', () {
       test('buka fail zip dan baca kandungan', () {
         final arkib = bukaFailZip(kategori);
@@ -92,11 +87,11 @@ void main() {
             bacaCsv<Laluan>(dariTxt: FailTxt.laluan, endpoint: kategori);
         print(laluan[0].toString());
 
-        laluan.forEach((element) {
-          if (element.namaPenuh == 'T464') {
-            print(element.toString());
-          }
-        });
+        // laluan.forEach((element) {
+        //   if (element.namaPenuh == 'T464') {
+        //     print(element.toString());
+        //   }
+        // });
       });
     });
 
@@ -139,11 +134,11 @@ void main() {
         final temp = bacaCsv<WaktuBerhenti>(
             dariTxt: FailTxt.waktuBerhenti, endpoint: kategori);
         print(temp[0].toString());
-        for (var e in temp) {
-          if (e.idPerjalanan == '231027011063S8') {
-            print(e.toString());
-          }
-        }
+        // for (var e in temp) {
+        //   if (e.idPerjalanan == '231027011063S8') {
+        //     print(e.toString());
+        //   }
+        // }
       });
     });
 
@@ -159,11 +154,11 @@ void main() {
             dariTxt: FailTxt.perjalanan, endpoint: kategori);
         print(temp[0].toString());
 
-        for (var element in temp) {
-          if (element.idLaluan == '30000129') {
-            print(element.toString());
-          }
-        }
+        // for (var element in temp) {
+        //   if (element.idLaluan == '30000129') {
+        //     print(element.toString());
+        //   }
+        // }
       });
     });
   });

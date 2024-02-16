@@ -1,13 +1,13 @@
 import '../constant/endpoint_list.dart';
 
 class Bentuk {
-  String id;
+  String idBentuk;
   double lat;
   double lon;
   int susunan;
 
   Bentuk(
-    this.id,
+    this.idBentuk,
     this.lat,
     this.lon,
     this.susunan,

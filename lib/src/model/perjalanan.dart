@@ -3,9 +3,9 @@ import '../constant/endpoint_list.dart';
 enum ArahPerjalanan { satuArah, berbalik }
 
 class Perjalanan {
+  String idPerjalanan;
   String idLaluan;
   String idPerkhidmatan;
-  String idPerjalanan;
   String? idBentuk;
   String? petunjukPerjalanan;
   ArahPerjalanan? idArah;

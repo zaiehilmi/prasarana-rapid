@@ -4,7 +4,7 @@ enum Ketersediaan { ya, tidak }
 
 /// diambil daripada calendar.txt
 class Kalendar {
-  String id;
+  String idKalendar;
   Ketersediaan isnin;
   Ketersediaan selasa;
   Ketersediaan rabu;
@@ -16,7 +16,7 @@ class Kalendar {
   DateTime tarikhAkhir;
 
   Kalendar(
-    this.id,
+    this.idKalendar,
     this.isnin,
     this.selasa,
     this.rabu,
@@ -45,7 +45,7 @@ class Kalendar {
 
   @override
   String toString() =>
-      'Kalendar{id: $id, isnin: $isnin, selasa: $selasa, rabu: $rabu, khamis: $khamis, jumaat: $jumaat, sabtu: $sabtu, ahad: $ahad, tarikhMula: $tarikhMula, tarikhAkhir: $tarikhAkhir}';
+      'Kalendar{id: $idKalendar, isnin: $isnin, selasa: $selasa, rabu: $rabu, khamis: $khamis, jumaat: $jumaat, sabtu: $sabtu, ahad: $ahad, tarikhMula: $tarikhMula, tarikhAkhir: $tarikhAkhir}';
 }
 
 Ketersediaan tukar(int nilai) => switch (nilai) {

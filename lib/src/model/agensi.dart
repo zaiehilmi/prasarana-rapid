@@ -2,7 +2,7 @@ import 'package:prasarana_rapid/src/constant/endpoint_list.dart';
 
 /// diambil dari agency.dart
 class Agensi {
-  String? id;
+  String? idAgensi;
   String namaAgensi;
   String url;
   String zonWaktu;
@@ -10,7 +10,7 @@ class Agensi {
   String? bahasa;
 
   Agensi(
-    this.id,
+    this.idAgensi,
     this.namaAgensi,
     this.url,
     this.zonWaktu,
@@ -40,15 +40,5 @@ class Agensi {
 
   @override
   String toString() =>
-      'Agensi{id: $id, namaAgensi: $namaAgensi, url: $url, zonWaktu: $zonWaktu, noTel: $noTel, bahasa: $bahasa}';
-
-//   @override
-//   String toString() => '''
-// id           : $id
-// nama agensi  : $namaAgensi
-// url          : $url
-// zon waktu    : $zonWaktu
-// no telefon   : $noTel
-// bahasa       : $bahasa
-// ''';
+      'Agensi{id: $idAgensi, namaAgensi: $namaAgensi, url: $url, zonWaktu: $zonWaktu, noTel: $noTel, bahasa: $bahasa}';
 }

@@ -15,7 +15,7 @@ enum JenisKenderaan {
 
 /// diambil daripada routes.txt
 class Laluan {
-  String id;
+  String idLaluan;
   String? idAgensi;
   String? namaPendek;
   String namaPenuh;
@@ -24,7 +24,7 @@ class Laluan {
   String? warnaTeksLaluan;
 
   Laluan(
-    this.id,
+    this.idLaluan,
     this.idAgensi,
     this.namaPendek,
     this.namaPenuh,
@@ -51,7 +51,7 @@ class Laluan {
           data[1],
           data[2].toString(),
           data[3],
-          data[4],
+          tukar(data[4]),
           data[5].toString(),
           data[6].toString(),
         ),
@@ -60,7 +60,7 @@ class Laluan {
 
   @override
   String toString() {
-    return 'Laluan{id: $id, idAgensi: $idAgensi, namaPendek: $namaPendek, namaPenuh: $namaPenuh, jenisLaluan: $jenisLaluan, warnaLaluan: $warnaLaluan, warnaTeksLaluan: $warnaTeksLaluan}';
+    return 'Laluan{id: $idLaluan, idAgensi: $idAgensi, namaPendek: $namaPendek, namaPenuh: $namaPenuh, jenisLaluan: $jenisLaluan, warnaLaluan: $warnaLaluan, warnaTeksLaluan: $warnaTeksLaluan}';
   }
 }
 

@@ -1,13 +1,14 @@
 import '../constant/endpoint_list.dart';
 
 class Hentian {
-  String id;
+  String idHentian;
   String? namaHentian;
   String? huraianHentian;
   double? lat;
   double? lon;
 
-  Hentian(this.id, this.namaHentian, this.huraianHentian, this.lat, this.lon);
+  Hentian(this.idHentian, this.namaHentian, this.huraianHentian, this.lat,
+      this.lon);
 
   factory Hentian.dariCsv(List<dynamic> data, Kategori kategori) => Hentian(
         data[0].toString(),
@@ -19,7 +20,7 @@ class Hentian {
 
   @override
   String toString() =>
-      'Hentian{id: $id, namaHentian: $namaHentian, huraianHentian: $huraianHentian, lat: $lat, lon: $lon}';
+      'Hentian{id: $idHentian, namaHentian: $namaHentian, huraianHentian: $huraianHentian, lat: $lat, lon: $lon}';
 }
 
 // [1000002, SL254 PERINDUSTRIAN BT CAVES, JLN SBC 5, 3.2336025134884, 101.68713320744]

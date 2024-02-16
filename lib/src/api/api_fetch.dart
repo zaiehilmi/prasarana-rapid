@@ -19,7 +19,9 @@ Future<void> fetchPrasaranaApi(
   Kategori kategori, {
   bool semakPerubahan = true,
 }) async {
-  final kedudukanFail = 'out/${kategori.nama}.zip';
+  final kedudukanFail = (Tetapan.filePath == null)
+      ? 'out/${kategori.nama}.zip'
+      : '${Tetapan.filePath}/out/${kategori.nama}.zip';
   final laluanApi = '?category=${kategori.nama}';
 
   try {

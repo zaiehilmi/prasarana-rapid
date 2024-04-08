@@ -1,7 +1,7 @@
 import '../constant/endpoint_list.dart';
 
 class Hentian {
-  String idHentian;
+  String idHentian; // digunakan di WaktuBerhenti
   String? namaHentian;
   String? huraianHentian;
   double? lat;
@@ -20,7 +20,7 @@ class Hentian {
 
   @override
   String toString() =>
-      'Hentian{id: $idHentian, namaHentian: $namaHentian, huraianHentian: $huraianHentian, lat: $lat, lon: $lon}';
+      'Hentian{idHentian: $idHentian, namaHentian: $namaHentian, huraianHentian: $huraianHentian, lat: $lat, lon: $lon}';
 }
 
 // [1000002, SL254 PERINDUSTRIAN BT CAVES, JLN SBC 5, 3.2336025134884, 101.68713320744]

@@ -15,7 +15,7 @@ enum JenisKenderaan {
 
 /// diambil daripada routes.txt
 class Laluan {
-  String idLaluan;
+  String idLaluan; // digunakan di Perjalanan
   String? idAgensi;
   String? namaPendek;
   String namaPenuh;

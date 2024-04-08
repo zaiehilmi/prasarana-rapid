@@ -1,7 +1,7 @@
 import '../constant/endpoint_list.dart';
 
 class Bentuk {
-  String idBentuk;
+  String idBentuk; // digunakan di Perjalanan
   double lat;
   double lon;
   int susunan;
@@ -27,5 +27,10 @@ class Bentuk {
       data[2].runtimeType == int ? intLon : data[2],
       data[3],
     );
+  }
+
+  @override
+  String toString() {
+    return 'Bentuk{idBentuk: $idBentuk, lat: $lat, lon: $lon, susunan: $susunan}';
   }
 }

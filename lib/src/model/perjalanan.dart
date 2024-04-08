@@ -19,15 +19,25 @@ class Perjalanan {
     this.idArah,
   );
 
-  factory Perjalanan.dariCsv(List<dynamic> data, Kategori kategori) =>
-      Perjalanan(
-        data[0].toString(),
-        data[1].toString(),
-        data[2] as String,
-        data[3] != '' ? data[3].toString() : null,
-        data[4] != '' ? data[4].toString() : null,
-        tukar(data[5] as int),
-      );
+  factory Perjalanan.dariCsv(List<dynamic> data, Kategori kategori) => switch (kategori) {
+        Kategori.basPerantaraMrt => Perjalanan(
+            data[0].toString(),
+            data[1].toString(),
+            data[2].toString(),
+            data[5] != '' ? data[5].toString() : null,
+            data[3] != '' ? data[3].toString() : null,
+            tukar(data[4] as int),
+          ),
+        Kategori.basKL => Perjalanan(
+            data[0].toString(),
+            data[1].toString(),
+            data[2] as String,
+            data[3] != '' ? data[3].toString() : null,
+            data[4] != '' ? data[4].toString() : null,
+            tukar(data[5] as int),
+          ),
+        Kategori.relKL => throw UnimplementedError(),
+      };
 
   @override
   String toString() =>

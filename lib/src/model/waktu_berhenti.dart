@@ -6,7 +6,7 @@ class WaktuBerhenti {
   String idPerjalanan;
   DateTime? ketibaan;
   DateTime? pelepasan;
-  int idHentian;
+  String idHentian;
   int susunanBerhenti;
   String? petunjuk;
 
@@ -24,14 +24,14 @@ class WaktuBerhenti {
         data[0],
         data[1].toString().keDateTime,
         data[2].toString().keDateTime,
-        data[3],
+        data[3].toString(),
         data[4],
         data[5].toString().jadiNullJikaTiadaData,
       );
 
   @override
   String toString() =>
-      'WaktuBerhenti{idPerjalanan: $idPerjalanan, ketibaan: $ketibaan, pelepasan: $pelepasan, idBerhenti: $idHentian, susunanBerhenti: $susunanBerhenti, petunjuk: $petunjuk}';
+      'WaktuBerhenti{idPerjalanan: $idPerjalanan, ketibaan: $ketibaan, pelepasan: $pelepasan, idHentian: $idHentian, susunanBerhenti: $susunanBerhenti, petunjuk: $petunjuk}';
 }
 
 // [weekend_U8510_U851002_0, 06:30:00, 06:30:00, 1004342, 1, Kompleks Mahkamah Jalan Duta]

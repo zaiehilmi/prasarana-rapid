@@ -19,8 +19,7 @@ class WaktuBerhenti {
     this.petunjuk,
   );
 
-  factory WaktuBerhenti.dariCsv(List<dynamic> data, Kategori kategori) =>
-      WaktuBerhenti(
+  factory WaktuBerhenti.dariCsv(List<dynamic> data, JenisPerkhidmatan perkhidmatan) => WaktuBerhenti(
         data[0],
         data[1].toString().keDateTime,
         data[2].toString().keDateTime,

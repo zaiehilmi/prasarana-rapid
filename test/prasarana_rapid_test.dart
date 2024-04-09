@@ -2,6 +2,7 @@ import 'package:csv/csv.dart';
 import 'package:prasarana_rapid/src/api/api_fetch.dart';
 import 'package:prasarana_rapid/src/constant/endpoint_list.dart';
 import 'package:prasarana_rapid/src/constant/txt_list.dart';
+import 'package:prasarana_rapid/src/logic/hentian_bas.dart';
 import 'package:prasarana_rapid/src/model/kalendar.dart';
 import 'package:prasarana_rapid/src/util/baca_csv_dari_txt.dart';
 import 'package:prasarana_rapid/src/util/buka_fail_zip.dart';
@@ -15,8 +16,7 @@ void main() {
     });
 
     group('test api', () {
-      test('pastikan api boleh dijalankan',
-          () async => await fetchPrasaranaApi(Kategori.relKL));
+      test('pastikan api boleh dijalankan', () async => await fetchPrasaranaApi(JenisPerkhidmatan.relKL));
 
       test('muat turun jika fail zip tiada di lokasi setempat', () async {});
 
@@ -24,14 +24,12 @@ void main() {
     });
 
     test('buka fail zip dan baca baris pertama', () {
-      final arkib = bukaFailZip(Kategori.basKL);
+      final arkib = bukaFailZip(JenisPerkhidmatan.basKL);
 
-      final input = arkib
-          .firstWhere((file) => file.name.endsWith(FailTxt.agensi.nama.txt));
+      final input = arkib.firstWhere((file) => file.name.endsWith(FailTxt.agensi.nama.txt));
       final kandungan = String.fromCharCodes(input.content);
 
-      final rowsAsListOfValues =
-          const CsvToListConverter().convert(kandungan, eol: '\n');
+      final rowsAsListOfValues = const CsvToListConverter().convert(kandungan, eol: '\n');
       print(rowsAsListOfValues.length);
       print(rowsAsListOfValues[0]);
       print(rowsAsListOfValues[1]);
@@ -40,10 +38,14 @@ void main() {
     });
 
     test('baca fail txt', () {
-      final agensi = bacaCsv<Kalendar>(
-          dariTxt: FailTxt.kalendar, endpoint: Kategori.basKL);
+      final agensi = bacaCsv<Kalendar>(dariTxt: FailTxt.kalendar, endpoint: JenisPerkhidmatan.basKL);
       // print(agensi.length);
-      print('==${agensi[1].id}==');
+      print('==${agensi[1].idKalendar}==');
+    });
+
+    test('mendapatkan semua hentian bas yang unik', () {
+      HentianBas hb = HentianBas();
+      print('saiz: ${hb.semuaHentianBas().length}');
     });
   });
 }

@@ -16,13 +16,12 @@ final _options = BaseOptions(
 final dio = Dio(_options);
 
 Future<void> fetchPrasaranaApi(
-  Kategori kategori, {
+  JenisPerkhidmatan perkhidmatan, {
   bool semakPerubahan = true,
 }) async {
-  final kedudukanFail = (Tetapan.filePath == null)
-      ? 'out/${kategori.nama}.zip'
-      : '${Tetapan.filePath}/out/${kategori.nama}.zip';
-  final laluanApi = '?category=${kategori.nama}';
+  final kedudukanFail =
+      (Tetapan.filePath == null) ? 'out/${perkhidmatan.nama}.zip' : '${Tetapan.filePath}/out/${perkhidmatan.nama}.zip';
+  final laluanApi = '?category=${perkhidmatan.nama}';
 
   try {
     if (Tetapan.token != null) {
@@ -43,6 +42,8 @@ Future<void> fetchPrasaranaApi(
         await dio.download(laluanApi, kedudukanFail);
       }
     }
+
+    print('Selesai memuat API');
   } on DioException {
     print('Masalah di Dio');
   } catch (e) {

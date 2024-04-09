@@ -13,16 +13,16 @@ import '../model/agensi.dart';
 import '../model/bentuk.dart';
 import 'buka_fail_zip.dart';
 
-List<T> bacaCsv<T>({required FailTxt dariTxt, required Kategori endpoint}) {
+List<T> bacaCsv<T>({required FailTxt dariTxt, required JenisPerkhidmatan endpoint}) {
   final arkib = bukaFailZip(endpoint);
   List<T> senaraiObjek = [];
 
-  final input =
-      arkib.firstWhere((file) => file.name.endsWith(dariTxt.nama.txt));
+  final input = arkib.firstWhere((file) => file.name.endsWith(dariTxt.nama.txt));
   final kandungan = String.fromCharCodes(input.content);
 
-  final baris =
-      const CsvToListConverter().convert(kandungan, eol: '\n').sublist(1);
+  print(CsvToListConverter().convert(kandungan, eol: '\n').sublist(0)[0]);
+
+  final baris = const CsvToListConverter().convert(kandungan, eol: '\n').sublist(1);
 
   for (final b in baris) {
     final objek = switch (dariTxt) {
@@ -38,7 +38,6 @@ List<T> bacaCsv<T>({required FailTxt dariTxt, required Kategori endpoint}) {
     senaraiObjek.add(objek as T);
   }
 
-  print(
-      'Terdapat ${senaraiObjek.length} data ${dariTxt.name.hurufPertamaBesar}');
+  print('Terdapat ${senaraiObjek.length} data ${dariTxt.name.hurufPertamaBesar}');
   return senaraiObjek;
 }

@@ -28,7 +28,7 @@ class Kalendar {
     this.tarikhAkhir,
   );
 
-  factory Kalendar.dariCsv(List<dynamic> data, Kategori kategori) {
+  factory Kalendar.dariCsv(List<dynamic> data, JenisPerkhidmatan perkhidmatan) {
     return Kalendar(
       data[0].toString(),
       tukar(data[1]),

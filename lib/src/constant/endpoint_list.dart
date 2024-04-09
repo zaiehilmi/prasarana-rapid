@@ -1,9 +1,9 @@
-enum Kategori {
+enum JenisPerkhidmatan {
   basPerantaraMrt('rapid-bus-mrtfeeder'),
   relKL('rapid-rail-kl'),
   basKL('rapid-bus-kl');
 
   final String nama;
 
-  const Kategori(this.nama);
+  const JenisPerkhidmatan(this.nama);
 }

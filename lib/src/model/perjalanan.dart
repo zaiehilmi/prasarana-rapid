@@ -19,8 +19,8 @@ class Perjalanan {
     this.idArah,
   );
 
-  factory Perjalanan.dariCsv(List<dynamic> data, Kategori kategori) => switch (kategori) {
-        Kategori.basPerantaraMrt => Perjalanan(
+  factory Perjalanan.dariCsv(List<dynamic> data, JenisPerkhidmatan perkhidmatan) => switch (perkhidmatan) {
+        JenisPerkhidmatan.basPerantaraMrt => Perjalanan(
             data[0].toString(),
             data[1].toString(),
             data[2].toString(),
@@ -28,7 +28,7 @@ class Perjalanan {
             data[3] != '' ? data[3].toString() : null,
             tukar(data[4] as int),
           ),
-        Kategori.basKL => Perjalanan(
+        JenisPerkhidmatan.basKL => Perjalanan(
             data[0].toString(),
             data[1].toString(),
             data[2] as String,
@@ -36,7 +36,7 @@ class Perjalanan {
             data[4] != '' ? data[4].toString() : null,
             tukar(data[5] as int),
           ),
-        Kategori.relKL => throw UnimplementedError(),
+        JenisPerkhidmatan.relKL => throw UnimplementedError(),
       };
 
   @override

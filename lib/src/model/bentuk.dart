@@ -13,7 +13,7 @@ class Bentuk {
     this.susunan,
   );
 
-  factory Bentuk.dariCsv(List<dynamic> data, Kategori kategori) {
+  factory Bentuk.dariCsv(List<dynamic> data, JenisPerkhidmatan perkhidmatan) {
     var intLat = 0.0;
     var intLon = 0.0;
     // cariParamNull(data);
@@ -21,6 +21,7 @@ class Bentuk {
       intLat = data[1] + 0.0;
       intLon = data[2] + 0.0;
     }
+
     return Bentuk(
       data[0].toString(),
       data[1].runtimeType == int ? intLat : data[1],

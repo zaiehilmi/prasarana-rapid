@@ -21,7 +21,7 @@ class Frekuensi {
     this.exactTimes,
   );
 
-  factory Frekuensi.dariCsv(List<dynamic> data, Kategori kategori) => Frekuensi(
+  factory Frekuensi.dariCsv(List<dynamic> data, JenisPerkhidmatan perkhidmatan) => Frekuensi(
         data[0],
         data[1].toString().keDateTime,
         data[2].toString().keDateTime,

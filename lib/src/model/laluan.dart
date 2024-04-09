@@ -33,30 +33,26 @@ class Laluan {
     this.warnaTeksLaluan,
   );
 
-  factory Laluan.dariCsv(List<dynamic> data, Kategori kategori) {
-    // cariParamNull(data);
-
-    return switch (kategori) {
-      Kategori.basPerantaraMrt => Laluan(
-          data[0].toString(),
-          data[1] == '' ? null : data[1],
-          data[2] == '' ? null : data[2],
-          data[3],
-          tukar(data[4]),
-          null,
-          null,
-        ),
-      Kategori.basKL || Kategori.relKL => Laluan(
-          data[0],
-          data[1],
-          data[2].toString(),
-          data[3],
-          tukar(data[4]),
-          data[5].toString(),
-          data[6].toString(),
-        ),
-    };
-  }
+  factory Laluan.dariCsv(List<dynamic> data, JenisPerkhidmatan perkhidmatan) => switch (perkhidmatan) {
+        JenisPerkhidmatan.basPerantaraMrt => Laluan(
+            data[0].toString(),
+            data[1] == '' ? null : data[1],
+            data[2] == '' ? null : data[2],
+            data[3],
+            tukar(data[4]),
+            null,
+            null,
+          ),
+        JenisPerkhidmatan.basKL || JenisPerkhidmatan.relKL => Laluan(
+            data[0],
+            data[1],
+            data[2].toString(),
+            data[3],
+            tukar(data[4]),
+            data[5].toString(),
+            data[6].toString(),
+          ),
+      };
 
   @override
   String toString() {

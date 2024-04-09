@@ -18,10 +18,9 @@ import 'package:test/scaffolding.dart';
 
 void main() {
   group('objek dalam bas perantara mrt', () {
-    final kategori = Kategori.basPerantaraMrt;
+    final kategori = JenisPerkhidmatan.basPerantaraMrt;
 
-    test('dapatkan data dari Api',
-        () async => await fetchPrasaranaApi(kategori));
+    test('dapatkan data dari Api', () async => await fetchPrasaranaApi(kategori));
 
     test('buka fail zip dan dapatkan nilai objek', () {
       final arkib = bukaFailZip(kategori);
@@ -58,8 +57,7 @@ void main() {
       });
 
       test('baca agency.txt', () {
-        final agensi =
-            bacaCsv<Agensi>(dariTxt: FailTxt.agensi, endpoint: kategori);
+        final agensi = bacaCsv<Agensi>(dariTxt: FailTxt.agensi, endpoint: kategori);
         print(agensi[0].toString());
       });
     });
@@ -72,8 +70,7 @@ void main() {
       });
 
       test('baca calendar.txt', () {
-        final kalendar =
-            bacaCsv<Kalendar>(dariTxt: FailTxt.kalendar, endpoint: kategori);
+        final kalendar = bacaCsv<Kalendar>(dariTxt: FailTxt.kalendar, endpoint: kategori);
         print(kalendar[0].toString());
       });
     });
@@ -88,15 +85,14 @@ void main() {
       });
 
       test('baca routes.txt', () {
-        final laluan =
-            bacaCsv<Laluan>(dariTxt: FailTxt.laluan, endpoint: kategori);
+        final laluan = bacaCsv<Laluan>(dariTxt: FailTxt.laluan, endpoint: kategori);
         print(laluan[0].toString());
 
-        laluan.forEach((element) {
+        for (var element in laluan) {
           if (element.namaPenuh == 'T464') {
             print(element.toString());
           }
-        });
+        }
       });
     });
 
@@ -108,8 +104,7 @@ void main() {
       });
 
       test('baca shapes.txt', () {
-        final bentuk =
-            bacaCsv<Bentuk>(dariTxt: FailTxt.bentuk, endpoint: kategori);
+        final bentuk = bacaCsv<Bentuk>(dariTxt: FailTxt.bentuk, endpoint: kategori);
         print(bentuk[0].toString());
       });
     });
@@ -122,9 +117,14 @@ void main() {
       });
 
       test('baca stops.txt', () {
-        final temp =
-            bacaCsv<Hentian>(dariTxt: FailTxt.hentian, endpoint: kategori);
-        print(temp[0].toString());
+        final temp = bacaCsv<Hentian>(dariTxt: FailTxt.hentian, endpoint: kategori);
+        // print(temp[100].toString());
+
+        for (var e in temp) {
+          if (e.namaHentian == 'KL2411') {
+            print(e.toString());
+          }
+        }
       });
     });
 
@@ -136,11 +136,10 @@ void main() {
       });
 
       test('baca stop_times.txt', () {
-        final temp = bacaCsv<WaktuBerhenti>(
-            dariTxt: FailTxt.waktuBerhenti, endpoint: kategori);
-        print(temp[0].toString());
+        final temp = bacaCsv<WaktuBerhenti>(dariTxt: FailTxt.waktuBerhenti, endpoint: kategori);
+        // print(temp[0].toString());
         for (var e in temp) {
-          if (e.idPerjalanan == '231027011063S8') {
+          if (e.idHentian == '12001515') {
             print(e.toString());
           }
         }
@@ -155,28 +154,25 @@ void main() {
       });
 
       test('baca trips.txt', () {
-        final temp = bacaCsv<Perjalanan>(
-            dariTxt: FailTxt.perjalanan, endpoint: kategori);
+        // [route_id 0, service_id 1, trip_id 2, trip_headsign 3, direction_id 4, shape_id 5]
+        final temp = bacaCsv<Perjalanan>(dariTxt: FailTxt.perjalanan, endpoint: kategori);
         print(temp[0].toString());
 
-        for (var element in temp) {
-          if (element.idLaluan == '30000129') {
-            print(element.toString());
-          }
-        }
+        // for (var element in temp) {
+        //   if (element.idLaluan == '30000129') {
+        //     print(element.toString());
+        //   }
+        // }
       });
     });
   });
 }
 
-void dapatkanKandungan(List<ArchiveFile> arkib, FailTxt dariTxt,
-    {int indeks = 1}) {
-  final input =
-      arkib.firstWhere((file) => file.name.endsWith(dariTxt.nama.txt));
+void dapatkanKandungan(List<ArchiveFile> arkib, FailTxt dariTxt, {int indeks = 1}) {
+  final input = arkib.firstWhere((file) => file.name.endsWith(dariTxt.nama.txt));
   final kandungan = String.fromCharCodes(input.content);
 
-  final rowsAsListOfValues =
-      const CsvToListConverter().convert(kandungan, eol: '\n');
+  final rowsAsListOfValues = const CsvToListConverter().convert(kandungan, eol: '\n');
   print(rowsAsListOfValues.length);
   print(rowsAsListOfValues[0]);
   print(rowsAsListOfValues[indeks]);

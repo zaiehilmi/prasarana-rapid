@@ -18,9 +18,8 @@ class Agensi {
     this.bahasa,
   );
 
-  factory Agensi.dariCsv(List<dynamic> data, Kategori kategori) =>
-      switch (kategori) {
-        Kategori.basPerantaraMrt => Agensi(
+  factory Agensi.dariCsv(List<dynamic> data, JenisPerkhidmatan perkhidmatan) => switch (perkhidmatan) {
+        JenisPerkhidmatan.basPerantaraMrt => Agensi(
             null,
             data[0] as String,
             data[1] as String,
@@ -28,7 +27,7 @@ class Agensi {
             data[3] as String,
             data[4].toString(),
           ),
-        Kategori.basKL || Kategori.relKL => Agensi(
+        JenisPerkhidmatan.basKL || JenisPerkhidmatan.relKL => Agensi(
             data[0] as String,
             data[1] as String,
             data[2] as String,

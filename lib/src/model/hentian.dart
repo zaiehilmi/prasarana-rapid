@@ -7,10 +7,9 @@ class Hentian {
   double? lat;
   double? lon;
 
-  Hentian(this.idHentian, this.namaHentian, this.huraianHentian, this.lat,
-      this.lon);
+  Hentian(this.idHentian, this.namaHentian, this.huraianHentian, this.lat, this.lon);
 
-  factory Hentian.dariCsv(List<dynamic> data, Kategori kategori) => Hentian(
+  factory Hentian.dariCsv(List<dynamic> data, JenisPerkhidmatan perkhidmatan) => Hentian(
         data[0].toString(),
         data[1] as String,
         data[2] != '' ? data[2].toString() : null,

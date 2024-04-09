@@ -29,6 +29,16 @@ start using the package.
 TODO: Include short and useful examples for package users. Add longer examples
 to `/example` folder. 
 
+Langkah 1
+```dart
+  getTemporaryDirectory().then((value) {
+      Tetapan.filePath = value.path; // penting
+
+      fetchPrasaranaApi(Kategori.basKL);
+      fetchPrasaranaApi(Kategori.basPerantaraMrt);
+    });
+```
+
 ```dart
 const like = 'sample';
 ```

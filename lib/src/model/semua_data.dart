@@ -29,6 +29,10 @@ class SemuaData {
     final basMRT = bacaCsv<J>(dariTxt: failTxt, endpoint: JenisPerkhidmatan.basPerantaraMrt);
 
     basMRT.addAll(basKL);
+
+    // buang data sama
+    basMRT.toSet().toList();
+
     // susun mengikut aturan semakin menaik
     // basMRT.toSet().toList().sort((a, b) => lajurA?.compareTo(lajurB));
     // basMRT.toSet().toList().sort((a, b) => a.idHentian.compareTo(b.idHentian));

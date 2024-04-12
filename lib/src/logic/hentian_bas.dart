@@ -1,4 +1,3 @@
-import 'package:prasarana_rapid/prasarana_rapid.dart';
 import 'package:prasarana_rapid/src/constant/kod_respon.dart';
 import 'package:prasarana_rapid/src/model/semua_data.dart';
 import 'package:collection/collection.dart';

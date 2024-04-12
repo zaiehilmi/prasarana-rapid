@@ -28,13 +28,13 @@ Future<void> fetchPrasaranaApi(
       _options.headers = {'Authorization': 'Bearer ${Tetapan.token}'};
     }
 
-    final response = await dio.get(laluanApi);
+    final response = await dio.head(laluanApi);
     final etag = response.headers.value('etag').toString();
 
     final failBelumWujud = !File(kedudukanFail).existsSync();
-
+    print(response.requestOptions.uri);
     if (failBelumWujud) {
-      print('Memuat turun data...');
+      print('Memuat turun data... dari ${response.requestOptions.path}');
       await dio.download(laluanApi, kedudukanFail);
     } else {
       if (semakPerubahan && bandingHash(kedudukanFail, etag)) {

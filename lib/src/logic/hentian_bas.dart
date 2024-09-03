@@ -1,6 +1,6 @@
+import 'package:collection/collection.dart';
 import 'package:prasarana_rapid/src/constant/kod_respon.dart';
 import 'package:prasarana_rapid/src/model/semua_data.dart';
-import 'package:collection/collection.dart';
 
 void main() async {
   final hentianBas = HentianBas();
@@ -24,21 +24,23 @@ class HentianBas {
     List<String>? senaraiBas;
 
     // dapatkan maklumat hentian bas
-    var turasHentianBas = sd.semuaHentian.singleWhereOrNull((h) => h.idHentian == idHentian);
+    var turasHentianBas =
+        sd.semuaHentian.singleWhereOrNull((h) => h.idHentian == idHentian);
 
     if (turasHentianBas != null) {
       namaHentian = turasHentianBas.namaHentian;
 
       // cari senarai laluan bas yang berhenti pada hentian bas tu
       // Laluan.namaPendek <- Perjalanan.idLaluan <- WaktuBerhenti.idPerjalanan
-      final turasWaktuBerhenti =
-          sd.semuaWaktuBerhenti.firstWhereOrNull((wb) => turasHentianBas.idHentian == wb.idHentian);
+      final turasWaktuBerhenti = sd.semuaWaktuBerhenti
+          .firstWhereOrNull((wb) => turasHentianBas.idHentian == wb.idHentian);
 
       if (turasWaktuBerhenti != null) {
-        final turasPerjalanan =
-            sd.semuaPerjalanan.singleWhereOrNull((p) => turasWaktuBerhenti.idPerjalanan == p.idPerjalanan);
+        final turasPerjalanan = sd.semuaPerjalanan.singleWhereOrNull(
+            (p) => turasWaktuBerhenti.idPerjalanan == p.idPerjalanan);
 
-        final turasLaluan = sd.semuaLaluan.where((l) => turasPerjalanan?.idLaluan == l.idLaluan);
+        final turasLaluan = sd.semuaLaluan
+            .where((l) => turasPerjalanan?.idLaluan == l.idLaluan);
 
         for (var laluan in turasLaluan) {
           print(laluan.idLaluan);
@@ -53,8 +55,6 @@ class HentianBas {
     print(namaHentian);
     return (namaHentian: namaHentian, senaraiNoBasPadaHentian: senaraiBas);
   }
-
-  void infoLaluan() {}
 
   void lakarLaluanPadaPeta() {}
 }

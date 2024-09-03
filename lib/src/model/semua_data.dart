@@ -25,10 +25,10 @@ class SemuaData {
   List<Perjalanan> get semuaPerjalanan => _semuaDataDaripadaJadual(failTxt: FailTxt.perjalanan);
 
   List<J> _semuaDataDaripadaJadual<J>({required FailTxt failTxt}) {
-    final basKL = bacaCsv<J>(dariTxt: failTxt, endpoint: JenisPerkhidmatan.basKL);
+    // final basKL = bacaCsv<J>(dariTxt: failTxt, endpoint: JenisPerkhidmatan.basKL);
     final basMRT = bacaCsv<J>(dariTxt: failTxt, endpoint: JenisPerkhidmatan.basPerantaraMrt);
 
-    basMRT.addAll(basKL);
+    // basMRT.addAll(basKL);
 
     // buang data sama
     basMRT.toSet().toList();
@@ -39,3 +39,5 @@ class SemuaData {
     return basMRT;
   }
 }
+
+final SemuaData dataBas = SemuaData.instance;

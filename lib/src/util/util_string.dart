@@ -4,9 +4,15 @@ extension StringUtil on String {
   DateTime get keDateTime {
     final harini = DateTime.now();
     var tarikh = this;
-    if (length != 8) tarikh = '0$this';
 
-    return DateTime.parse('${harini.year}-01-01 $tarikh');
+    if (length != 8) tarikh = '0$this';
+    String formattedBulan =
+        harini.month < 10 ? '0${harini.month}' : harini.month.toString();
+    String formattedHari =
+        harini.day < 10 ? '0${harini.day}' : harini.day.toString();
+
+    return DateTime.parse(
+        '${harini.year}-$formattedBulan-$formattedHari $tarikh');
   }
 
   String? get jadiNullJikaTiadaData => this != '' ? this : null;

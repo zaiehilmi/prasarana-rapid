@@ -45,7 +45,7 @@ void main() {
 
     test('mendapatkan semua hentian bas yang unik', () {
       HentianBas hb = HentianBas();
-      print('saiz: ${hb.semuaHentianBas().length}');
+      print('saiz: ${hb.sd().length}');
     });
   });
 }

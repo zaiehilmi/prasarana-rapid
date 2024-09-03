@@ -20,7 +20,7 @@ List<T> bacaCsv<T>({required FailTxt dariTxt, required JenisPerkhidmatan endpoin
   final input = arkib.firstWhere((file) => file.name.endsWith(dariTxt.nama.txt));
   final kandungan = String.fromCharCodes(input.content);
 
-  print(CsvToListConverter().convert(kandungan, eol: '\n').sublist(0)[0]);
+  // print(CsvToListConverter().convert(kandungan, eol: '\n').sublist(0)[0]);
 
   final baris = const CsvToListConverter().convert(kandungan, eol: '\n').sublist(1);
 
@@ -38,6 +38,6 @@ List<T> bacaCsv<T>({required FailTxt dariTxt, required JenisPerkhidmatan endpoin
     senaraiObjek.add(objek as T);
   }
 
-  print('Terdapat ${senaraiObjek.length} data ${dariTxt.name.hurufPertamaBesar}');
+  // print('Terdapat ${senaraiObjek.length} data ${dariTxt.name.hurufPertamaBesar}');
   return senaraiObjek;
 }

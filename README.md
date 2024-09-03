@@ -34,8 +34,8 @@ Langkah 1
   getTemporaryDirectory().then((value) {
       Tetapan.filePath = value.path; // penting
 
-      fetchPrasaranaApi(Kategori.basKL);
-      fetchPrasaranaApi(Kategori.basPerantaraMrt);
+      fetchPrasaranaApi(JenisPerkhidmatan.basKL);
+      fetchPrasaranaApi(JenisPerkhidmatan.basPerantaraMrt);
     });
 ```
 

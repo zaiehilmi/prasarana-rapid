@@ -1,10 +1,9 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:prasarana_rapid/src/service/tetapan.dart';
 import 'package:prasarana_rapid/src/util/kira_hash.dart';
 
-import '../constant/endpoint_list.dart';
+import '../../../prasarana_rapid.dart';
 
 final _options = BaseOptions(
   method: 'get',
@@ -19,8 +18,9 @@ Future<void> fetchPrasaranaApi(
   JenisPerkhidmatan perkhidmatan, {
   bool semakPerubahan = true,
 }) async {
-  final kedudukanFail =
-      (Tetapan.filePath == null) ? 'out/${perkhidmatan.nama}.zip' : '${Tetapan.filePath}/out/${perkhidmatan.nama}.zip';
+  final kedudukanFail = (Tetapan.filePath == null)
+      ? 'out/${perkhidmatan.nama}.zip'
+      : '${Tetapan.filePath}/out/${perkhidmatan.nama}.zip';
   final laluanApi = '?category=${perkhidmatan.nama}';
 
   try {

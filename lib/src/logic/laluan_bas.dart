@@ -1,53 +1,89 @@
 import 'package:collection/collection.dart';
-import 'package:prasarana_rapid/src/model/semua_data.dart';
-import 'package:prasarana_rapid/src/model/waktu_berhenti.dart';
+
+import '../model/laluan.dart';
+import '../model/semua_data.dart';
+import '../model/waktu_berhenti.dart';
+import '../util/buang_pendua.dart';
+import '../util/roggle.dart';
 // semua laluan bas
 
 // koordinat laluan bas
 
 // infoLaluanBas
 
-Future<List<WaktuBerhenti>> masaKetibaanBas(String kodLaluan) async {
+/// mendapatkan jadual bas. Berikan [bas] dengan kod laluan seperti `T542`, `T852`
+Future<List<DateTime>> jadualKetibaan({required String bas}) async {
+  // Cari laluan berdasarkan kod laluan
+  final turasKodLaluan = _cariLaluan(bas);
+  if (turasKodLaluan == null) return [];
+
+  // Dapatkan senarai masa ketibaan
+  final listWaktuBerhenti = _dapatkanMasaKetibaan(turasKodLaluan.idLaluan);
+
+  // Map untuk mendapatkan ketibaan, tapis null, dan sort
+  final jadual = listWaktuBerhenti
+      .map((e) => e.ketibaan)
+      .whereType<DateTime>() // Hanya benarkan DateTime, tapis null
+      .toSet() // Hapuskan pendua
+      .toList()
+    ..sort((a, b) => a.compareTo(b)); // Sort dalam urutan menaik
+
+  return jadual;
+}
+
+// MARK: UTILITI
+
+/// Fungsi untuk mencari laluan berdasarkan kod laluan
+Laluan? _cariLaluan(String kodLaluan) {
   final dataLaluan = dataBas.semuaLaluan;
+  return dataLaluan.singleWhereIndexedOrNull(
+    (index, l) => l.namaPenuh == kodLaluan,
+  );
+}
+
+/// Fungsi untuk mendapatkan masa ketibaan
+List<WaktuBerhenti> _dapatkanMasaKetibaan(String idLaluan) {
   final dataPerjalanan = dataBas.semuaPerjalanan;
   final dataWaktuBerhenti = dataBas.semuaWaktuBerhenti;
   List<WaktuBerhenti> wb = [];
 
-  // Cari laluan berdasarkan kod laluan
-  final turasKodLaluan = dataLaluan.singleWhereIndexedOrNull(
-    (index, l) => l.namaPenuh == kodLaluan,
+  final turasPerjalanan = dataPerjalanan.where(
+    (p) => p.idLaluan == idLaluan,
   );
 
-  if (turasKodLaluan != null) {
-    // Penapisan perjalanan mengikut laluan
-    final turasPerjalanan = dataPerjalanan.where(
-      (p) => p.idLaluan == turasKodLaluan.idLaluan,
+  for (var perjalanan in turasPerjalanan) {
+    var masaBerlepas = dataWaktuBerhenti.firstWhere(
+      (wbItem) => wbItem.idPerjalanan == perjalanan.idPerjalanan,
     );
-
-    // Guna loop 'for' untuk iterasi dan mendapatkan masa berlepas secara async
-    for (var perjalanan in turasPerjalanan) {
-      var masaBerlepas = dataWaktuBerhenti.firstWhere(
-        (wbItem) => wbItem.idPerjalanan == perjalanan.idPerjalanan,
-      );
-
-      wb.add(masaBerlepas);
-    }
-
-    // Hapuskan pendua dan susun data berdasarkan masa ketibaan
-    wb = wb.toSet().toList();
-    wb.sort((a, b) {
-      if (a.ketibaan == null && b.ketibaan == null) return 0;
-      if (a.ketibaan == null) return 1;
-      if (b.ketibaan == null) return -1;
-      return a.ketibaan!.compareTo(b.ketibaan!);
-    });
-
-    // Cetak hasil untuk debugging
-    print(wb.length);
-    wb.asMap().forEach((i, waktuBerhenti) {
-      print('$i --> ${waktuBerhenti.ketibaan}');
-    });
+    wb.add(masaBerlepas);
   }
 
+  return wb.toSet().toList(); // Hapuskan pendua
+}
+
+/// Fungsi untuk menyusun dan mencetak masa ketibaan
+@Deprecated('Tidak akan digunakan lagi')
+List<WaktuBerhenti> _susunDanCetakMasaKetibaan(List<WaktuBerhenti> wb) {
+  wb.sort((a, b) => _bandingkanKetibaan(a.ketibaan, b.ketibaan));
+
+  wb = buangPendua<WaktuBerhenti, DateTime?>(
+    wb,
+    aksesKriteria: (item) => item.ketibaan,
+  );
+
+  // Cetak hasil untuk debugging
+  print(wb.length);
+  wb.asMap().forEach((i, waktuBerhenti) {
+    roggle.i('$i --> ${waktuBerhenti.ketibaan}');
+  });
+
   return wb;
+}
+
+/// Fungsi untuk membandingkan waktu ketibaan
+int _bandingkanKetibaan(DateTime? a, DateTime? b) {
+  if (a == null && b == null) return 0;
+  if (a == null) return 1;
+  if (b == null) return -1;
+  return a.compareTo(b);
 }

@@ -3,7 +3,6 @@ import 'package:collection/collection.dart';
 import '../model/laluan.dart';
 import '../model/semua_data.dart';
 import '../model/waktu_berhenti.dart';
-import '../util/buang_pendua.dart';
 import '../util/roggle.dart';
 // semua laluan bas
 
@@ -24,9 +23,11 @@ Future<List<DateTime>> jadualKetibaan({required String bas}) async {
   final jadual = listWaktuBerhenti
       .map((e) => e.ketibaan)
       .whereType<DateTime>() // Hanya benarkan DateTime, tapis null
-      .toSet() // Hapuskan pendua
+      .toSet()
       .toList()
     ..sort((a, b) => a.compareTo(b)); // Sort dalam urutan menaik
+
+  roggle.d('Saiz ketibaan bas $bas: ${jadual.length}');
 
   return jadual;
 }
@@ -59,25 +60,6 @@ List<WaktuBerhenti> _dapatkanMasaKetibaan(String idLaluan) {
   }
 
   return wb.toSet().toList(); // Hapuskan pendua
-}
-
-/// Fungsi untuk menyusun dan mencetak masa ketibaan
-@Deprecated('Tidak akan digunakan lagi')
-List<WaktuBerhenti> _susunDanCetakMasaKetibaan(List<WaktuBerhenti> wb) {
-  wb.sort((a, b) => _bandingkanKetibaan(a.ketibaan, b.ketibaan));
-
-  wb = buangPendua<WaktuBerhenti, DateTime?>(
-    wb,
-    aksesKriteria: (item) => item.ketibaan,
-  );
-
-  // Cetak hasil untuk debugging
-  print(wb.length);
-  wb.asMap().forEach((i, waktuBerhenti) {
-    roggle.i('$i --> ${waktuBerhenti.ketibaan}');
-  });
-
-  return wb;
 }
 
 /// Fungsi untuk membandingkan waktu ketibaan

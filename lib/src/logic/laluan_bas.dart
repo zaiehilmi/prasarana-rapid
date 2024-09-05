@@ -27,7 +27,7 @@ Future<List<DateTime>> jadualKetibaan({required String bas}) async {
       .toList()
     ..sort((a, b) => a.compareTo(b)); // Sort dalam urutan menaik
 
-  roggle.d('Saiz ketibaan bas $bas: ${jadual.length}');
+  roggle.i('Saiz ketibaan bas $bas: ${jadual.length}');
 
   return jadual;
 }

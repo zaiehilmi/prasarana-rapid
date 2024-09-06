@@ -14,6 +14,7 @@ enum JenisKenderaan {
 }
 
 /// diambil daripada routes.txt
+/// untuk mendapatkan kodLaluan seperti `T541`, sila gunakan [namaPenuh]
 class Laluan {
   String idLaluan; // digunakan di Perjalanan
   String? idAgensi;
@@ -33,7 +34,8 @@ class Laluan {
     this.warnaTeksLaluan,
   );
 
-  factory Laluan.dariCsv(List<dynamic> data, JenisPerkhidmatan perkhidmatan) => switch (perkhidmatan) {
+  factory Laluan.dariCsv(List<dynamic> data, JenisPerkhidmatan perkhidmatan) =>
+      switch (perkhidmatan) {
         JenisPerkhidmatan.basPerantaraMrt => Laluan(
             data[0].toString(),
             data[1] == '' ? null : data[1],
